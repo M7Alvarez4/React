@@ -23,7 +23,7 @@ const App = function() {
             <h3>{getTime()}</h3>
         </div>
     );
-}
+} 
 
 // Take the react compenent and show it on the screen
 ReactDOM.render(
