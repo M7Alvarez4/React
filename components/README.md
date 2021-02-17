@@ -1,6 +1,7 @@
 # Useful websites
 * [Semantic-UI](https://semantic-ui.com/)
 * [CDNJS](https://cdnjs.com/libraries/semantic-ui)
+* [Marak's Faker.js](https://github.com/marak/Faker.js/)
 
 # Getting Started with Create React App
 
