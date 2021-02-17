@@ -8,30 +8,28 @@ class App extends React.Component {
         
         // Rule of State: state must be initialize when component is created
         this.state = { lat: null , errorMessage: '' };
+    }
 
-        //moved computational code to constructor to reduce constant calls to it
+    componentDidMount() {
+        //moved again from constructor to componentDidMount() method to centralize data loading
         window.navigator.geolocation.getCurrentPosition(
-            position => {
-                // call to setState to update state
-                this.setState({ lat: position.coords.latitude });
-            },
-            err => {
-                this.setState({ errorMessage: err.message });
-            }
+            // call to setState to update state
+            position => this.setState({ lat: position.coords.latitude }),
+            err => this.setState({ errorMessage: err.message })
         );
-
-
     }
 
     // React says we have to define a render method for each app component
     render() {
-        return (
-            <div>
-                Latitude: {this.state.lat}
-                <br />
-                Error: {this.state.errorMessage}
-            </div>
-        );
+        if (this.state.errorMessage && !this.state.lat) {
+            return <div>Error: {this.state.errorMessage}</div>
+        }
+
+        if (!this.state.errorMessage && this.state.lat) {
+            return <div>Lat: {this.state.lat}</div>
+        }
+
+        return <div>Loading!</div>
     }
 }
 
