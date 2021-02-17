@@ -4,10 +4,10 @@ import ReactDOM from 'react-dom';
 class App extends React.Component {
     // one way of initializing state
     constructor(props) {
-        super(props);
+        super(props);   //must be called when using constructor
         
         // Rule of State: state must be initialize when component is created
-        this.state = { lat: null };
+        this.state = { lat: null , errorMessage: '' };
 
         //moved computational code to constructor to reduce constant calls to it
         window.navigator.geolocation.getCurrentPosition(
@@ -15,7 +15,9 @@ class App extends React.Component {
                 // call to setState to update state
                 this.setState({ lat: position.coords.latitude });
             },
-            err => console.log(err)
+            err => {
+                this.setState({ errorMessage: err.message });
+            }
         );
 
 
@@ -23,7 +25,13 @@ class App extends React.Component {
 
     // React says we have to define a render method for each app component
     render() {
-        return <div>Latitude: {this.state.lat}</div>
+        return (
+            <div>
+                Latitude: {this.state.lat}
+                <br />
+                Error: {this.state.errorMessage}
+            </div>
+        );
     }
 }
 
