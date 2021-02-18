@@ -1,14 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import SeasonDisplay from './SeasonDisplay';
 
 class App extends React.Component {
-    // one way of initializing state
-    constructor(props) {
-        super(props);   //must be called when using constructor
-        
-        // Rule of State: state must be initialize when component is created
-        this.state = { lat: null , errorMessage: '' };
-    }
+
+    //runs through babel to create the constructor
+    state = {lat: null, errorMessage: ''};
 
     componentDidMount() {
         //moved again from constructor to componentDidMount() method to centralize data loading
@@ -26,7 +23,7 @@ class App extends React.Component {
         }
 
         if (!this.state.errorMessage && this.state.lat) {
-            return <div>Lat: {this.state.lat}</div>
+            return <SeasonDisplay lat={this.state.lat}/>
         }
 
         return <div>Loading!</div>
