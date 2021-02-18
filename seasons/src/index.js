@@ -3,16 +3,12 @@ import ReactDOM from 'react-dom';
 import SeasonDisplay from './SeasonDisplay';
 
 class App extends React.Component {
-
-    //runs through babel to create the constructor
     state = {lat: null, errorMessage: ''};
 
     componentDidMount() {
-        //moved again from constructor to componentDidMount() method to centralize data loading
         window.navigator.geolocation.getCurrentPosition(
-            // call to setState to update state
-            position => this.setState({ lat: position.coords.latitude }),
-            err => this.setState({ errorMessage: err.message })
+            (position) => this.setState({ lat: position.coords.latitude }),
+            (err) => this.setState({ errorMessage: err.message })
         );
     }
 
