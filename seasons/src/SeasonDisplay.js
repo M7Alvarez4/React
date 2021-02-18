@@ -1,3 +1,4 @@
+import './SeasonDisplay.css';
 import React from 'react';
 
 
@@ -15,9 +16,12 @@ const seasonConfig = {
 
 const getSeason = (lat, month) => {
     if (month > 2 && month < 9) {
+        console.log("In if " + lat + " " + month);
         return lat > 0 ? 'summer' : 'winter';
+    } else { 
+        console.log("In else " + lat + " " + month);
+        return lat > 0 ? 'winter' : 'summer';
     }
-    else return lat > 0 ? 'winter' : 'summer';
 }
 
 const SeasonDisplay = (props) => {
@@ -27,9 +31,9 @@ const SeasonDisplay = (props) => {
 
     return (
             <div>
-                <i className={`massive ${iconName} icon`} />
+                <i className={`icon-left massive ${iconName} icon`} />
                 <h1>{text}</h1>
-                <i className={`massive ${iconName} icon`} />
+                <i className={`icon-right massive ${iconName} icon`} />
             </div>
         );
 
